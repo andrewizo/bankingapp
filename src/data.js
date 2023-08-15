@@ -5,7 +5,7 @@ const DATA = [
         fullname: "Admin Account",
         type: "Savings Account",
         number: "47290539480",
-        balance: 1000,
+        balance: 100000,
         isAdmin: true, 
         transactions: []
     },
@@ -65,7 +65,7 @@ const DATA = [
     {
         email: "himeko@stlr.com",
         password: "stlr123",
-        fullname: "Himeko",
+        fullname: "Murata Himeko",
         type: "Checking Account",
         number: "47290539484",
         balance: 837495.38, 
@@ -76,7 +76,7 @@ const DATA = [
     {
         email: "welt@stlr.com",
         password: "stlr123",
-        fullname: "Welt",
+        fullname: "Welt Yang",
         type: "Checking Account",
         number: "47290539485",
         balance: 574839.58, 
