@@ -1,9 +1,10 @@
-@import url('https://fonts.googleapis.com/css?family=Tangerine');
+@import url('https://fonts.googleapis.com/css2?family=Tektur:wght@500&display=swap');
 :root {
-    --first-color: rgb(246, 244, 237);
-    --secondary-color: rgb(65, 178, 182);
-    --text-color: rgb(6, 51, 147);
-    --secondary-text-color: #10129e;
+    --first-color: #f6f4ed;
+    --secondary-color: #842c6a;
+    --text-color: #3a0d26;
+    --secondary-text-color: #891d69;
+    --font-family: 'Tektur', cursive;
 }
 
 * {
@@ -13,9 +14,10 @@
 }
 
 body {
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-family);
     color: var(--text-color);
     background-color: var(--first-color);
+    
 }
 
 main {
