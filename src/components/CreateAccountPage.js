@@ -84,7 +84,7 @@ export const CreateAccountPage = (props) => {
                 <input id="account-number" name="accountNumber" className="right" value={initialAccountNumber} type="number" disabled />
 
                 <label htmlFor="balance">Initial balance</label>
-                <input id="balance" type="text" value={formatNumber(initialBalance)} onChange={onInitialBalance} name="initialBalance" className="right" />
+                <input id="balance" type="text" value={formatNumber(initialBalance)} onChange={onInitialBalance} name="initialBalance" className="right" disabled />
 
                 <label htmlFor="account-type">Account Type</label>
                 <select name="accountType">
