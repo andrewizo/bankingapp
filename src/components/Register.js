@@ -1,13 +1,34 @@
-import React from "react";
-import { useEffect, useState } from "react";
-import { SideLink } from "./Sidebar"
-import { CreateAccountPage } from "./CreateAccountPage";
+// Register.jsx
+
+import React, { useState } from "react";
+import { SideLink } from "./Sidebar";
+import { RegistrationForm } from "./RegistrationForm"; // Import the RegistrationForm component
 import { Sidebar } from "./Sidebar";
 
 export const Register = (props) => {
     const { user, logoutHandler, changePage, page } = props;
+    const [showCreateAccount, setShowCreateAccount] = useState(false);
+    const [registrationSuccess, setRegistrationSuccess] = useState(false); // State for registration success
+
+    const handleCreateAccountClick = () => {
+        setShowCreateAccount(true);
+    };
+
+    const handleRegistrationSuccess = () => {
+        setRegistrationSuccess(true);
+        setShowCreateAccount(false); // Hide the form after registration success
+    };
 
     return (
-        <SideLink onClickHandler={changePage} active={page} page="create-account" icon="bx bx-user-pin" text="Create Account" />
-    )    
-}
+        <>
+            <SideLink onClickHandler={handleCreateAccountClick} active={page} page="create-account" icon="bx bx-user-pin" text="Register" />
+            {showCreateAccount && !registrationSuccess && <RegistrationForm onRegistrationSuccess={handleRegistrationSuccess} />}
+            {registrationSuccess && (
+                <div>
+                    <h1>Registration Successful</h1>
+                    <p>You have successfully registered an account.</p>
+                </div>
+            )}
+        </>
+    );
+};
