@@ -21,7 +21,7 @@ export const Register = (props) => {
 
     return (
         <>
-            <SideLink onClickHandler={handleCreateAccountClick} active={page} page="create-account" icon="bx bx-user-pin" text="Register" />
+            <SideLink id="register" style={{ listStyle: 'none', textDecoration: 'none' }} onClickHandler={handleCreateAccountClick} active={page} page="create-account" icon="bx bx-user-pin" text="Don't have an account? Register here" />
             {showCreateAccount && !registrationSuccess && <RegistrationForm onRegistrationSuccess={handleRegistrationSuccess} />}
             {registrationSuccess && (
                 <div>

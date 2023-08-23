@@ -50,7 +50,7 @@ export const LoginPage = (props) => {
             <input id="password" autoComplete="off" onChange={onChangePassword} value={password} type="password" />
             <button type="submit" className="btn">Login</button>
           </form>
-          <Register />
+          <Register id="register" style={{ listStyle: 'none', textDecoration: 'none' }} />
         </div>
       </div>
     )
