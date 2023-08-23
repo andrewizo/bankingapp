@@ -3,15 +3,16 @@ import { Notif } from "./Notif";
 import { formatNumber, findAccount, transact, trim, capitalize } from "./Utils";
 
 export const TransactPage = (props) => {
+    const {isClient, client, setClient} = props;
     const users = JSON.parse(localStorage.getItem('users'));
     const setNotif = props.setNotif;
     const notif = props.notif;
     const [accounts, setAccounts] = useState(users);
     const [selectedAccount, setSelectedAccount] = useState({balance: 0});
     const [depositAmount, setDepositAmount] = useState(0);
-
+    
     const options = accounts.map(user => {
-        return <option value={user.number}>{user.fullname} #{user.number}</option>
+            return <option value={user.number}>{user.fullname} #{user.number}</option>
     });
 
     const displayBalance = (e) => {
@@ -52,8 +53,28 @@ export const TransactPage = (props) => {
             setNotif({message: `${capitalize(props.page)} failed.`, style: 'danger'});
         }
     }
+    
     // 'bx bx-up-arrow-alt'
     const icon = props.page === 'withdraw' ? 'bx bx-down-arrow-alt' : 'bx bx-up-arrow-alt';
+
+     let optionField = 
+     <select name="account" onChange={displayBalance}>
+        <option value="0">Select Account</option>
+        {options}
+     </select>
+    
+    if(isClient) {
+        const filterUser = accounts.filter(user => user.number == client.number)
+        const currentUser = filterUser.map(user => {
+            return <option value={user.number}>{user.fullname} #{user.number}</option>
+    });
+    
+        optionField = 
+    <select name="account" onChange={displayBalance}>
+        <option value="0">Select Account</option>
+        {currentUser}
+    </select>
+    }
 
     return (
         <section id="main-content">
@@ -61,10 +82,7 @@ export const TransactPage = (props) => {
                 <h1>{props.page}</h1>
                 <Notif message={notif.message} style={notif.style} />
                 <label>Account</label>
-                <select name="account" onChange={displayBalance}>
-                    <option value="0">Select Account</option>
-                    {options}
-                </select>
+                {optionField}
 
                 <label>Current balance</label>
                 <input type="text" className="right" value={formatNumber(selectedAccount.balance)} disabled />

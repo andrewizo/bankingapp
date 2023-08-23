@@ -1,46 +1,44 @@
-import { useState } from "react";
+// RegistrationForm.js
+import React, { useState } from "react";
 import { Notif } from "./Notif";
-import {formatNumber, trim} from './Utils';
+import { formatNumber, trim } from './Utils';
+import DATA from '../data'; // Import your data file
 
-export const CreateAccountPage = (props) => {
+export const RegistrationForm = (props) => {
     const createRandomAccount = () => {
         return Math.floor(1000000000 + Math.random() * 9000000000);
-    }
-    
+    };
+
     const [notif, setNotif] = useState({message: 'Create a new client account.', style: 'left'});
     const [initialBalance, setInitialBalance] = useState(0);
     const [initialAccountNumber, setInitialAccountNumber] = useState(createRandomAccount());
 
+    const localUsers = DATA; // Access your existing user data
+
     const createNewAccount = (user) => {
-
-        const emptyInputs = Object.values(user).filter(input => {
-            return input === ''
-        });
-
-        const localUsers = props.users;
+        const emptyInputs = Object.values(user).filter(input => input === '');
 
         let alreadyExists = false;
         localUsers.forEach(row => {
-            if(row.email === user.email) {
+            if (row.email === user.email) {
                 alreadyExists = true;
             }
         });
 
-        if(alreadyExists) {
+        if (alreadyExists) {
             setNotif({message: 'This email already exists. Try again.', style: 'danger'});
             return false;
-        } else if(emptyInputs.length > 0) {
+        } else if (emptyInputs.length > 0) {
             setNotif({message: 'All fields are required.', style: 'danger'});
             return false;
         } else {
             setNotif('');
             localUsers.unshift(user);
-            props.setUsers(localUsers); 
             localStorage.setItem('users', JSON.stringify(localUsers));
             setNotif({message: 'Successfully saved.', style: 'success'});
             return true;
         }
-    }
+    };
 
     const handleCreateAccount = (event) => {
         event.preventDefault();
@@ -53,24 +51,24 @@ export const CreateAccountPage = (props) => {
             type: user.accountType.value,
             number: user.accountNumber.value,
             isAdmin: false,
-            balance: trim(user.initialBalance.value), 
+            balance: trim(user.initialBalance.value),
             transactions: []
-        }
+        };
 
         const isSaved = createNewAccount(account);
-        if(isSaved) {
+        if (isSaved) {
             user.email.value = '';
             user.password.value = '';
-            user.fullname.value = ''; 
-            user.accountNumber.value = setInitialAccountNumber(createRandomAccount());
-            user.initialBalance.value = setInitialBalance(0);
+            user.fullname.value = '';
+            setInitialAccountNumber(createRandomAccount()); // Remove user.accountNumber.value assignment
+            setInitialBalance(0); // Reset initial balance
         }
-    }
+    };
 
     const onInitialBalance = event => {
         const amount = trim(event.target.value) || 0;
         setInitialBalance(amount);
-    }
+    };
 
     return (
         <section id="main-content">
@@ -99,5 +97,5 @@ export const CreateAccountPage = (props) => {
                 <input value="Create Account" className="btn" type="submit" />
             </form>
         </section>
-    )
-}
+    );
+};
