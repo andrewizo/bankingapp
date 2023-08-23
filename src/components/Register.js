@@ -25,7 +25,6 @@ export const Register = (props) => {
     const handleCloseLinkClick = () => {
         setShowCreateAccount(false);
         setShowCloseLink(false); // Hide the Close link when it's clicked
-        window.location.reload(); // Reload the page
     };
 
     return (
