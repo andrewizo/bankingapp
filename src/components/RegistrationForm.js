@@ -63,10 +63,6 @@ export const RegistrationForm = (props) => {
             setInitialAccountNumber(createRandomAccount()); // Remove user.accountNumber.value assignment
             setInitialBalance(0); // Reset initial balance
         }
-
-        const { onRegistrationSuccess } = props;
-        props.onRegistrationSuccess();
-
     };
 
     const onInitialBalance = event => {
