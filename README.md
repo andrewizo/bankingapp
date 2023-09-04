@@ -5,6 +5,8 @@ He does the creation of account manually using the account holders name and sets
 He also does the transfer of balances if there are requests for it.
 Your task is to help this poor employee out by creating a simple admin banking app
 
+https://bankingapp-beta.vercel.app/
+
 ### For Admin
 ```
 email: admin@stlr.com
