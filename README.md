@@ -54,4 +54,4 @@ To run the application locally, follow these steps:
     - ReactJS
     - HTML
     - CSS
-    - Javascript
+    - JavaScript
